@@ -22,6 +22,10 @@ class Point:
 #my code ^^^^^^^^^^
 #########################
 #not my code \/\/\/\/ 
+#################
+import pygame
+import time
+import random
 
 pygame.init()
 
