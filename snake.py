@@ -2,6 +2,27 @@ import pygame
 import time
 import random
 
+
+class Point:
+    """ Point class for representing and manipulating x,y coordinates. """
+
+    def __init__(self):
+        """ Create a new point at the origin """
+        self.x = 0
+        self.y = 0
+
+
+# It may be helpful to think of a class as a factory for making 
+# objects. The class itself isn’t an instance of a point, but it
+# contains the machinery to make point instances. 
+
+
+
+#################################
+#my code ^^^^^^^^^^
+#########################
+#not my code \/\/\/\/ 
+
 pygame.init()
 
 white = (255,255,255)
@@ -293,6 +314,6 @@ def gameLoop():
 game_intro()
 gameLoop()
 
-###################
+#################
 #need code here
 ##################
