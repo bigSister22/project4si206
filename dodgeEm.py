@@ -81,8 +81,8 @@ def gameLoop():
 
 
 
-	randImX = (random.randrange(0, display_width-block_size))
-	randImY = (random.randrange(0, display_height-block_size))
+	randImX = round(random.randrange(0, display_width-block_size)/10.0)*10.0
+	randImY = round(random.randrange(0, display_height-block_size)/10.0)*10.0
 
 
 	# RED square image #### ball = pygame.image.load(os.path.join('images', 'ball.bmp'))
@@ -109,7 +109,7 @@ def gameLoop():
 	while not gameExit:
 		while gameOver == True:
 			gameDisplay.fill(WHITE)
-			end_message("Failed. Press C to play again, Q to quit. SCORE: ", score,GOBLUE)
+			end_message("No lives left!! You dead. Press C to play again, Q to quit. SCORE: ", score,GOBLUE)
 			pygame.display.update()
 			for event in pygame.event.get():
 				if event.type == pygame.KEYDOWN:
@@ -159,20 +159,25 @@ def gameLoop():
 		gameDisplay.blit(blueball, (lead_x,lead_y))
 		pygame.display.update()
 		
-		#if lead_x == randSX and lead_y == randSY:
-		if pygame.sprite.collide_rect(blueball,greenball):
+		if lead_x == randSX and lead_y == randSY:
+		#if pygame.sprite.collide_rect(blueball,greenball):
+		# if greenball.colliderect(blueball):
+		#if pygame.sprite.spritecollide(blueball, greenball, True):
+			# print("COLLISION!!!")
 			score+=1
 			randSX = round(random.randrange(0, display_width-block_size)/10.0)*10.0
 			randSY = round(random.randrange(0, display_height-block_size)/10.0)*10.0
-
-			coordList.append((random.randrange(0, display_width-block_size), random.randrange(0, display_height-block_size)))
+			for x in range (4):
+				coordList.append((round(random.randrange(0, display_width-block_size)/10.0)*10.0, round(random.randrange(0, display_height-block_size)/10.0)*10.0))
 
 
 		# if pygame.sprite.spritecollide(ball,rect):
 		# 	print ("Game Over")
-		# for x in coordList:
-		# 	if x[0]== lead_x and x[1] == lead_y:
-		# 		lives-=1
+		if lead_x == randImX and lead_y == randImY:
+			lives-=1
+		for x in coordList:
+			if x[0]== lead_x and x[1] == lead_y:
+				lives-=1
 		
 
 		
