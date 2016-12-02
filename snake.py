@@ -43,6 +43,13 @@ pygame.display.set_caption('Slither')
 icon = pygame.image.load('apple2.png')
 pygame.display.set_icon(icon)
 
+########
+musher = pygame.sprite.Sprite()
+musher.image = pygame.image.load(os.path.join('images', 'musher.bmp'))
+musher.rect = musher.image.get_rect()
+musher.rect.move_ip(10,10)
+###########
+
 img = pygame.image.load('snakehead2.png')
 appleimg = pygame.image.load('apple2.png')
 
