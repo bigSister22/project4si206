@@ -22,6 +22,7 @@
 ##################
 #figure out how to make image a rect and use the collison fucntion to subtract lives
 ###################
+from pygame import *
 import pygame
 import time
 import random
@@ -136,14 +137,15 @@ class GameElements(EndMessage):
 
 		#melody = pygame.mixer.Sound.play('tomLogicProAudioFile.wav')
 		# pygame.mixer.pre_init(44100, 16, 2, 4096)
-		# melody = pygame.mixer.Sound(os.path.join("sounds", "tk.wav")).convert_alpha()
-
-		#melody.play()
+		#melody = pygame.mixer.Sound(os.path.join("sounds", "tomLogicProAudioFile.wav"))
+		#pygame.mixer.init()
+		# melody = mixer.Sound("cha-ching.wav").play() 
+		
 		
 		while not gameExit:
 			while gameOver == True:
 				self.gameDisplay.fill(self.WHITE)
-				self.end_message("No lives left!! You dead. Press C to play again, Q to quit. SCORE: ", score,self.GOBLUE)
+				self.end_message("No lives left!! You dead. Press P to play again, Q to quit. SCORE: ", score,self.GOBLUE)
 				pygame.display.update()
 				for event in pygame.event.get():
 					if event.type == pygame.KEYDOWN:
@@ -151,7 +153,7 @@ class GameElements(EndMessage):
 							gameExit = True
 							gameOver = False
 					if event.type == pygame.KEYDOWN:
-						if event.key == pygame.K_c:
+						if event.key == pygame.K_p:
 							self.gameLoop()
 
 			
@@ -187,7 +189,7 @@ class GameElements(EndMessage):
 
 			
 			
-			self.gameDisplay.fill(self.WHITE)
+			self.gameDisplay.fill(self.BLACK)
 			self.scoreMessage("score: ",score, self.GOBLUE)
 			self.lives_message("Lives remaining: ",lives, self.GOBLUE)##### 1 ######may need to tweak funtion. lives and goblue are in a tup.. not sure if that fixed it
 			#pygame.draw.rect(gameDisplay, GREEN,[randSX, randSY,block_size,block_size])
@@ -214,6 +216,7 @@ class GameElements(EndMessage):
 			
 			if lead_x == randImX and lead_y == randImY:
 				lives-=1
+				melody = mixer.Sound("cha-ching.wav").play()
 			for x in coordList:
 				if x[0]== lead_x and x[1] == lead_y:
 					lives-=1
