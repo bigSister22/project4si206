@@ -138,7 +138,12 @@ def gameLoop():
 					lead_y_change = block_size
 					lead_x_change = 0
 		if lead_x >= display_width or lead_x < 0 or lead_y >= display_height or lead_y < 0:
-			gameOver = True
+			#gameOver = True
+			lives-=1
+			lead_x = display_width/2
+			lead_y = display_height/2
+
+
 		if lives == 0:
 			gameOver = True
 
