@@ -31,7 +31,13 @@ pygame.init()
 
 pygame.display.set_caption('DodgeEm!!')
 
-class GameElements():
+class EndMessage():
+
+	def end_message(self,msg,score,color):
+		screen_text = self.font.render((msg+str(score)),True,color)
+		self.gameDisplay.blit(screen_text,[self.display_width/4,self.display_height/2])
+
+class GameElements(EndMessage):
 	clock = pygame.time.Clock()
 
 	BLACK = (0,0,0)
@@ -69,13 +75,15 @@ class GameElements():
 		self.gameDisplay = pygame.display.set_mode((self.display_width,self.display_height))
 
 
-	def end_message(self,msg,score,color):
-		screen_text = self.font.render((msg+str(score)),True,color)
-		self.gameDisplay.blit(screen_text,[self.display_width/4,self.display_height/2]) ###mmm### lead_x and y might need to be what variable is and not name
+	 ###mmm### lead_x and y might need to be what variable is and not name
 
 	def lives_message(self,msg,lives,color):
 		screen_text = self.font.render((msg+str(lives)),True,color)
 		self.gameDisplay.blit(screen_text,[10,10])
+
+	def scoreMessage(self,msg,score,color):
+		screen_text = self.font.render((msg+str(score)),True,color)
+		self.gameDisplay.blit(screen_text,[40,40])
 
 	def gameLoop(self):
 		gameExit = False
@@ -125,6 +133,12 @@ class GameElements():
 		greenball.rect = greenball.image.get_rect()
 		greenball.rect.move_ip(10,10)
 		greenball = pygame.image.load(os.path.join('images', 'greenball.bmp'))
+
+		#melody = pygame.mixer.Sound.play('tomLogicProAudioFile.wav')
+		# pygame.mixer.pre_init(44100, 16, 2, 4096)
+		# melody = pygame.mixer.Sound(os.path.join("sounds", "tk.wav")).convert_alpha()
+
+		#melody.play()
 		
 		while not gameExit:
 			while gameOver == True:
@@ -138,7 +152,7 @@ class GameElements():
 							gameOver = False
 					if event.type == pygame.KEYDOWN:
 						if event.key == pygame.K_c:
-							gameLoop()
+							self.gameLoop()
 
 			
 			for event in pygame.event.get():
@@ -172,8 +186,9 @@ class GameElements():
 
 
 			
-
+			
 			self.gameDisplay.fill(self.WHITE)
+			self.scoreMessage("score: ",score, self.GOBLUE)
 			self.lives_message("Lives remaining: ",lives, self.GOBLUE)##### 1 ######may need to tweak funtion. lives and goblue are in a tup.. not sure if that fixed it
 			#pygame.draw.rect(gameDisplay, GREEN,[randSX, randSY,block_size,block_size])
 			self.gameDisplay.blit(greenball,(randSX,randSY))
@@ -211,7 +226,7 @@ class GameElements():
 		quit()
 
 
-	#gameLoop()
+
 
 
 gameref = GameElements()
