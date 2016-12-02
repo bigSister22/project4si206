@@ -92,7 +92,7 @@ class GameElements(EndMessage):
 		###############
 		score = 0
 		coordList = []
-		lives = 3
+		lives = 5
 		###############
 
 
@@ -175,7 +175,7 @@ class GameElements(EndMessage):
 						lead_x_change = 0
 			if lead_x >= self.display_width or lead_x < 0 or lead_y >= self.display_height or lead_y < 0:
 				#gameOver = True
-				#lives-=1
+				lives-=1
 				lead_x = self.display_width/2
 				lead_y = self.display_height/2
 
